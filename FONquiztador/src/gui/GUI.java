@@ -11,12 +11,13 @@ public class GUI {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void pokreni() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					GUI window = new GUI();
 					window.frame.setVisible(true);
+					window.frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

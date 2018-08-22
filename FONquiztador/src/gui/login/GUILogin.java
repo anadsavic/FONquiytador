@@ -4,13 +4,20 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+
+import gui.GUI;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.SystemColor;
+import java.awt.Toolkit;
 import java.awt.Color;
+import java.awt.Dimension;
+
 import javax.swing.JPasswordField;
 
 public class GUILogin {
@@ -32,6 +39,7 @@ public class GUILogin {
 				try {
 					GUILogin window = new GUILogin();
 					window.frmLogin.setVisible(true);
+					window.frmLogin.setLocationRelativeTo(null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -54,6 +62,7 @@ public class GUILogin {
 		frmLogin.getContentPane().setBackground(SystemColor.control);
 		frmLogin.getContentPane().setForeground(Color.WHITE);
 		frmLogin.setTitle("Login");
+		
 		frmLogin.setResizable(false);
 		frmLogin.setBounds(100, 100, 319, 223);
 		frmLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -126,14 +135,18 @@ public class GUILogin {
 		return passwordField;
 	}
 	private void proveriPodatke(String username, String pass) {
+		prijava(username,pass);
 		// TODO Auto-generated method stub
 	}
-	private boolean registracija(String username, String pass) {
+	private void registracija(String username, String pass) {
 		// TODO registracija korisnika u bazu
-		return false;
+		
 	}
-	private boolean prijava(String username, String pass) {
-		// TODO prijava korisnika
-		return false;
+	private void prijava(String username, String pass) {
+		JOptionPane.showMessageDialog(frmLogin, "Uspesno ste se prijavili");
+		GUI glavni = new GUI();
+		glavni.pokreni();
+		frmLogin.setVisible(false);
+		
 	}
 }
