@@ -135,7 +135,7 @@ public class GUILogin {
 		return passwordField;
 	}
 	private void proveriPodatke(String username, String pass) {
-		prijava(username,pass);
+		
 		// TODO Auto-generated method stub
 	}
 	private void registracija(String username, String pass) {
