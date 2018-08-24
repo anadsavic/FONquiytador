@@ -1,44 +1,33 @@
 package gui;
 
 import java.awt.EventQueue;
+import java.awt.event.WindowAdapter;
 
 import javax.swing.JFrame;
 
-public class GUI {
+public class GUI extends JFrame{
 
-	private JFrame frame;
+	
 
 	/**
 	 * Launch the application.
 	 */
-	public static void pokreni() {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					GUI window = new GUI();
-					window.frame.setVisible(true);
-					window.frame.setLocationRelativeTo(null);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
 
 	/**
 	 * Create the application.
 	 */
 	public GUI() {
-		initialize();
+		setBounds(100, 100, 450, 300);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setLocationRelativeTo(null);
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(java.awt.event.WindowEvent e) {
+				GUIKontroler.ugasiApp();
+			}
+		});
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	}
 
 }

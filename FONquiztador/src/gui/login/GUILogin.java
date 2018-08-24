@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import gui.GUI;
+import gui.GUIKontroler;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -20,9 +21,9 @@ import java.awt.Dimension;
 
 import javax.swing.JPasswordField;
 
-public class GUILogin {
+public class GUILogin extends JFrame{
 
-	private JFrame frmLogin;
+	
 	private JLabel lblUsername;
 	private JTextField usernametxt;
 	private JLabel lblPassword;
@@ -30,50 +31,30 @@ public class GUILogin {
 	private JButton btnCancel;
 	private JPasswordField passwordField;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					GUILogin window = new GUILogin();
-					window.frmLogin.setVisible(true);
-					window.frmLogin.setLocationRelativeTo(null);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
 
 	/**
 	 * Create the application.
 	 */
 	public GUILogin() {
-		initialize();
+		
+		getContentPane().setBackground(SystemColor.control);
+		getContentPane().setForeground(Color.WHITE);
+		setTitle("Login");
+		
+		setResizable(false);
+		setBounds(100, 100, 319, 223);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		getContentPane().setLayout(null);
+		getContentPane().add(getLblUsername());
+		getContentPane().add(getUsernametxt());
+		getContentPane().add(getLblPassword());
+		getContentPane().add(getOK());
+		getContentPane().add(getBtnCancel());
+		getContentPane().add(getPasswordField());
+		setLocationRelativeTo(null);
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frmLogin = new JFrame();
-		frmLogin.getContentPane().setBackground(SystemColor.control);
-		frmLogin.getContentPane().setForeground(Color.WHITE);
-		frmLogin.setTitle("Login");
-		
-		frmLogin.setResizable(false);
-		frmLogin.setBounds(100, 100, 319, 223);
-		frmLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmLogin.getContentPane().setLayout(null);
-		frmLogin.getContentPane().add(getLblUsername());
-		frmLogin.getContentPane().add(getUsernametxt());
-		frmLogin.getContentPane().add(getLblPassword());
-		frmLogin.getContentPane().add(getOK());
-		frmLogin.getContentPane().add(getBtnCancel());
-		frmLogin.getContentPane().add(getPasswordField());
-	}
 	private JLabel getLblUsername() {
 		if (lblUsername == null) {
 			lblUsername = new JLabel("Username");
@@ -119,7 +100,7 @@ public class GUILogin {
 			btnCancel = new JButton("Cancel");
 			btnCancel.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					System.exit(0);
+					dispose();
 				}
 			});
 			btnCancel.setFont(new Font("Segoe UI Emoji", Font.BOLD, 14));
@@ -134,19 +115,17 @@ public class GUILogin {
 		}
 		return passwordField;
 	}
-	private void proveriPodatke(String username, String pass) {
-		
-		// TODO Auto-generated method stub
+	private  void proveriPodatke(String username, String pass) {
+		GUIKontroler.proveriPodatke(username, pass);
+		dispose();//kad se napravi app treba obrisati
 	}
-	private void registracija(String username, String pass) {
-		// TODO registracija korisnika u bazu
-		
+	private  void registracija(String username, String pass) {
+		GUIKontroler.registracija(username, pass);
+		dispose();
 	}
-	private void prijava(String username, String pass) {
-		JOptionPane.showMessageDialog(frmLogin, "Uspesno ste se prijavili");
-		GUI glavni = new GUI();
-		glavni.pokreni();
-		frmLogin.setVisible(false);
-		
+	
+	private  void prijava(String username, String pass) {
+		GUIKontroler.prijava(username, pass);
+		dispose();
 	}
 }
